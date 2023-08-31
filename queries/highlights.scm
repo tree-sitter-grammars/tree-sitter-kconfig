@@ -63,14 +63,16 @@
   (text)
 ] @string
 
-(mainmenu name: (prompt) @tag)
+(config name: (symbol) @constant)
+(menuconfig name: (symbol) @constant)
+(choice name: (symbol) @constant)
 
-(config name: (symbol) @type)
-(menuconfig name: (symbol) @type)
-(choice name: (symbol) @type)
+((symbol) @constant
+  (#lua-match? @constant "[A-Z0-9]+"))
 
-(comment_entry name: (prompt) @type)
-(menu name: (prompt) @type)
+(mainmenu name: (prompt) @text.title)
+(comment_entry name: (prompt) @text.title)
+(menu name: (prompt) @text.title)
 
 (source (prompt) @text.uri @string.special)
 
