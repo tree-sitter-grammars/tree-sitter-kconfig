@@ -176,8 +176,8 @@ module.exports = grammar({
 
     numerical_ranges: $ => seq(
       'range',
-      $.symbol,
-      $.symbol,
+      choice($.symbol, $.macro_variable),
+      choice($.symbol, $.macro_variable),
       optional($.conditional_clause),
       /\n/,
     ),
