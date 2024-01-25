@@ -54,6 +54,7 @@ module.exports = grammar({
       $.menu,
       $.if,
       $.source,
+      $.variable,
     ),
 
     config: $ => seq(
@@ -98,6 +99,12 @@ module.exports = grammar({
     ),
 
     source: $ => seq('source', $.prompt),
+
+    variable: $ => seq(
+      field('left', $.symbol),
+      ':=',
+      field('right', $.expression),
+    ),
 
     _config_option: $ => choice(
       $.type_definition,
