@@ -185,6 +185,10 @@
           "named": true
         },
         {
+          "type": "variable",
+          "named": true
+        },
+        {
           "type": "weak_reverse_dependencies",
           "named": true
         }
@@ -385,6 +389,10 @@
         {
           "type": "source",
           "named": true
+        },
+        {
+          "type": "variable",
+          "named": true
         }
       ]
     }
@@ -483,6 +491,10 @@
         },
         {
           "type": "source",
+          "named": true
+        },
+        {
+          "type": "variable",
           "named": true
         }
       ]
@@ -653,6 +665,10 @@
           "named": true
         },
         {
+          "type": "variable",
+          "named": true
+        },
+        {
           "type": "weak_reverse_dependencies",
           "named": true
         }
@@ -739,6 +755,10 @@
       "types": [
         {
           "type": "conditional_clause",
+          "named": true
+        },
+        {
+          "type": "macro_variable",
           "named": true
         },
         {
@@ -855,6 +875,32 @@
     }
   },
   {
+    "type": "variable",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "symbol",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expression",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "weak_reverse_dependencies",
     "named": true,
     "fields": {},
@@ -898,6 +944,10 @@
     "named": false
   },
   {
+    "type": ":=",
+    "named": false
+  },
+  {
     "type": "<",
     "named": false
   },
@@ -927,11 +977,11 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": false
   },
   {
     "type": "comment",
-    "named": false
+    "named": true
   },
   {
     "type": "config",
