@@ -103,6 +103,7 @@ module.exports = grammar({
     variable: $ => seq(
       field('left', $.symbol),
       ':=',
+      optional(','),
       field('right', $.expression),
     ),
 
