@@ -889,8 +889,8 @@
         ]
       },
       "right": {
-        "multiple": false,
-        "required": true,
+        "multiple": true,
+        "required": false,
         "types": [
           {
             "type": "expression",
@@ -944,6 +944,10 @@
     "named": false
   },
   {
+    "type": "+=",
+    "named": false
+  },
+  {
     "type": ",",
     "named": false
   },
@@ -969,6 +973,10 @@
   },
   {
     "type": ">=",
+    "named": false
+  },
+  {
+    "type": "?=",
     "named": false
   },
   {

@@ -1,4 +1,5 @@
 #include "tree_sitter/parser.h"
+
 #include <wctype.h>
 
 enum TokenType {
@@ -13,17 +14,11 @@ void *tree_sitter_kconfig_external_scanner_create() { return NULL; }
 
 void tree_sitter_kconfig_external_scanner_destroy(void *payload) {}
 
-unsigned tree_sitter_kconfig_external_scanner_serialize(void *payload,
-                                                        char *buffer) {
-    return 0;
-}
+unsigned tree_sitter_kconfig_external_scanner_serialize(void *payload, char *buffer) { return 0; }
 
-void tree_sitter_kconfig_external_scanner_deserialize(void *payload,
-                                                      const char *buffer,
-                                                      unsigned length) {}
+void tree_sitter_kconfig_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
 
-bool tree_sitter_kconfig_external_scanner_scan(void *payload, TSLexer *lexer,
-                                               const bool *valid_symbols) {
+bool tree_sitter_kconfig_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     if (valid_symbols[HELP_TEXT]) {
         uint32_t start_col = 0;
         while (iswspace(lexer->lookahead)) {

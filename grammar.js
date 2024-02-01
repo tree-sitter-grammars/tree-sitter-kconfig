@@ -102,9 +102,9 @@ module.exports = grammar({
 
     variable: $ => seq(
       field('left', $.symbol),
-      ':=',
-      optional(','),
-      field('right', $.expression),
+      choice('=', ':=', '+=', '?='),
+      repeat(choice(',', field('right', $.expression))),
+      /\r?\n/,
     ),
 
     _config_option: $ => choice(
