@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/amaanq/tree-sitter-kconfig/compare/v1.1.0...v1.1.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* allow variables to be delimited by commas ([5fefd45](https://github.com/amaanq/tree-sitter-kconfig/commit/5fefd45628a32fc999aa9f4aebcc5ddcd071bcf2))
+* support more variable assignment operators ([dad9c38](https://github.com/amaanq/tree-sitter-kconfig/commit/dad9c38f12db7d441efd72785833746f7f9f7619))
+
 ## [1.1.0](https://github.com/amaanq/tree-sitter-kconfig/compare/v1.0.1...v1.1.0) (2024-01-25)
 
 
