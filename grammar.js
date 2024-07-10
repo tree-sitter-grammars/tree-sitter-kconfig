@@ -239,8 +239,8 @@ module.exports = grammar({
     macro_content: _ => /([^\$'"\)]|(\([^\)]*\))|(\\\$)|\$[^(])+/,
 
     prompt: _ => token(choice(
-      seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
-      seq('\'', repeat(choice(/[^'\\]/, /\\./)), '\''),
+      seq('"', repeat(choice(/[^"\\]/, /\\(.|\n)/)), '"'),
+      seq('\'', repeat(choice(/[^'\\]/, /\\(.|\n)/)), '\''),
     )),
 
     symbol: _ => /-?[a-zA-Z0-9_]+/,
