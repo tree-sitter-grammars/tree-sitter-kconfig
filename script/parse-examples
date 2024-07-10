@@ -16,6 +16,7 @@ function clone_repo {
 }
 
 clone_repo torvalds linux
+clone_repo zephyrproject-rtos zephyr
 
 known_failures="$(cat script/known_failures.txt)"
 
