@@ -1,4 +1,3 @@
-examples/linux/arch/arm/mm/Kconfig
 examples/linux/scripts/kconfig/tests/preprocess/builtin_func/Kconfig
 examples/linux/scripts/kconfig/tests/preprocess/circular_expansion/Kconfig
 examples/linux/scripts/kconfig/tests/preprocess/escape/Kconfig
