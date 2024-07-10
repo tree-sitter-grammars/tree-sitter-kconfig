@@ -155,7 +155,7 @@ module.exports = grammar({
     ),
 
     type_definition_default: $ => seq(
-      choice('def_bool', 'def_tristate'),
+      choice('def_bool', 'def_tristate', 'def_int', 'def_hex', 'def_string'),
       $.expression,
       optional($.conditional_clause),
       /\n/,
