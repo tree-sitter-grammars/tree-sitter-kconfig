@@ -243,7 +243,7 @@ module.exports = grammar({
       seq('\'', repeat(choice(/[^'\\]/, /\\(.|\n)/)), '\''),
     )),
 
-    symbol: _ => /-?[a-zA-Z0-9_]+/,
+    symbol: _ => /-?[a-zA-Z0-9_-]+/,
 
     comment: _ => token(seq('#', /.*/)),
   },
