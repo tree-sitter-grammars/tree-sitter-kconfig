@@ -48,6 +48,7 @@ module.exports = grammar({
 
     _entry: $ => choice(
       $.config,
+      $.configdefault,
       $.menuconfig,
       $.choice,
       $.comment_entry,
@@ -61,6 +62,13 @@ module.exports = grammar({
       'config',
       field('name', $.symbol),
       repeat1($._config_option),
+    ),
+
+    // zephyr extension
+    configdefault: $ => seq(
+      'configdefault',
+      field('name', $.symbol),
+      repeat1($.default_value),
     ),
 
     menuconfig: $ => seq(
