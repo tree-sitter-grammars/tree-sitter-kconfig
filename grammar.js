@@ -106,7 +106,10 @@ module.exports = grammar({
       'endif',
     ),
 
-    source: $ => seq('source', $.prompt),
+    source: $ => seq(
+      choice('source', 'rsource', 'osource', 'orsource'),
+      $.prompt,
+    ),
 
     variable: $ => seq(
       field('left', $.symbol),
