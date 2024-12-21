@@ -4,7 +4,7 @@ endif
 
 LANGUAGE_NAME := tree-sitter-kconfig
 HOMEPAGE_URL := https://github.com/tree-sitter-grammars/tree-sitter-kconfig
-VERSION := 1.1.1
+VERSION := 1.2.0
 
 # repository
 SRC_DIR := src
