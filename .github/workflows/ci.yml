@@ -50,6 +50,7 @@ jobs:
         with:
           files: |
             examples/**/Kconfig*
+            !examples/linux/scripts/Kconfig.include
             !examples/linux/scripts/kconfig/tests/preprocess/builtin_func/Kconfig
             !examples/linux/scripts/kconfig/tests/preprocess/circular_expansion/Kconfig
             !examples/linux/scripts/kconfig/tests/preprocess/escape/Kconfig
