@@ -1,0 +1,45 @@
+{
+  "grammars": [
+    {
+      "name": "kconfig",
+      "camelcase": "Kconfig",
+      "scope": "source.kconfig",
+      "path": ".",
+      "file-types": [
+        "Kconfig"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "injections": [
+        "queries/injections.scm"
+      ],
+      "locals": [
+        "queries/locals.scm"
+      ],
+      "injection-regex": "kconfig"
+    }
+  ],
+  "metadata": {
+    "version": "1.1.1",
+    "license": "MIT",
+    "description": "Kconfig grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Amaan Qureshi",
+        "email": "amaanq12@gmail.com"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-kconfig"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
