@@ -5,9 +5,6 @@
  * @see {@link https://www.kernel.org/doc/html/next/kbuild/kconfig-language.html|Kconfig Language Specification}
  */
 
-/* eslint-disable arrow-parens */
-/* eslint-disable camelcase */
-/* eslint-disable-next-line spaced-comment */
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
