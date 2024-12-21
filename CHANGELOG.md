@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/tree-sitter-grammars/tree-sitter-kconfig/compare/v1.1.1...v1.2.0) (2024-12-21)
+
+
+### Features
+
+* Expand help text tabs to tab stops ([b11daf2](https://github.com/tree-sitter-grammars/tree-sitter-kconfig/commit/b11daf2fc43ef4094400423b0b857a0d3307d37c))
+
 ## [1.1.1](https://github.com/amaanq/tree-sitter-kconfig/compare/v1.1.0...v1.1.1) (2024-02-01)
 
 
