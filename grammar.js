@@ -19,6 +19,10 @@ const PREC = {
 module.exports = grammar({
   name: 'kconfig',
 
+  conflicts: $ => [
+    [$.expression, $.name],
+  ],
+
   extras: $ => [
     /\s/,
     /\\\r?\n/,
@@ -36,15 +40,12 @@ module.exports = grammar({
   word: $ => $.symbol,
 
   rules: {
-    configuration: $ => seq(
-      optional($.mainmenu),
-      repeat($._entry),
-    ),
-
-    mainmenu: $ => seq('mainmenu', field('name', $.prompt)),
+    configuration: $ => repeat($._entry),
 
     _entry: $ => choice(
+      $.mainmenu,
       $.config,
+      $.configdefault,
       $.menuconfig,
       $.choice,
       $.comment_entry,
@@ -54,35 +55,43 @@ module.exports = grammar({
       $.variable,
     ),
 
+    mainmenu: $ => seq('mainmenu', field('name', $.string)),
+
     config: $ => seq(
       'config',
-      field('name', $.symbol),
+      field('name', $.name),
       repeat1($._config_option),
+    ),
+
+    configdefault: $ => seq(
+      'configdefault',
+      field('name', $.name),
+      repeat1($.default_value),
     ),
 
     menuconfig: $ => seq(
       'menuconfig',
-      field('name', $.symbol),
+      field('name', $.name),
       repeat1($._config_option),
     ),
 
     choice: $ => seq(
       'choice',
-      optional(field('name', $.symbol)),
+      optional(field('name', $.name)),
       repeat1($._config_option),
-      repeat1($._entry),
+      repeat($._entry),
       'endchoice',
     ),
 
     comment_entry: $ => seq(
       'comment',
-      field('name', $.prompt),
+      field('name', $.string),
       repeat($._config_option),
     ),
 
     menu: $ => seq(
       'menu',
-      field('name', $.prompt),
+      field('name', $.string),
       repeat($._config_option),
       repeat($._entry),
       'endmenu',
@@ -95,12 +104,18 @@ module.exports = grammar({
       'endif',
     ),
 
-    source: $ => seq('source', $.prompt),
+    source: $ => seq(
+      choice('source', 'rsource', 'osource', 'orsource'),
+      $.string,
+    ),
 
     variable: $ => seq(
       field('left', $.symbol),
       choice('=', ':=', '+=', '?='),
-      repeat(choice(',', field('right', $.expression))),
+      choice(
+        repeat(choice(',', field('right', $.expression))),
+        $.text,
+      ),
       /\r?\n/,
     ),
 
@@ -121,14 +136,14 @@ module.exports = grammar({
 
     type_definition: $ => seq(
       choice('bool', 'tristate', 'int', 'hex', 'string'),
-      optional(choice($.prompt, $.input_prompt)),
+      optional(choice($.string, $.input_prompt)),
       optional($.conditional_clause),
       /\n/,
     ),
 
     input_prompt: $ => seq(
       'prompt',
-      $.prompt,
+      $.string,
       optional($.conditional_clause),
       /\n/,
     ),
@@ -141,7 +156,7 @@ module.exports = grammar({
     ),
 
     type_definition_default: $ => seq(
-      choice('def_bool', 'def_tristate'),
+      choice('def_bool', 'def_tristate', 'def_int', 'def_hex', 'def_string'),
       $.expression,
       optional($.conditional_clause),
       /\n/,
@@ -155,7 +170,7 @@ module.exports = grammar({
 
     reverse_dependencies: $ => seq(
       'select',
-      $.symbol,
+      $.name,
       optional($.conditional_clause),
       /\n/,
     ),
@@ -193,7 +208,8 @@ module.exports = grammar({
 
     expression: $ => choice(
       $.symbol,
-      $.prompt,
+      $.name,
+      $.string,
       $.macro_variable,
       $.unary_expression,
       $.binary_expression,
@@ -229,18 +245,42 @@ module.exports = grammar({
       repeat(choice(
         $.macro_variable,
         $.macro_content,
-        alias($.prompt, $.text),
+        alias($.string, $.text),
       )),
       ')',
     ),
     macro_content: _ => /([^\$'"\)]|(\([^\)]*\))|(\\\$)|\$[^(])+/,
 
-    prompt: _ => token(choice(
-      seq('"', repeat(choice(/[^"\\]/, /\\./)), '"'),
-      seq('\'', repeat(choice(/[^'\\]/, /\\./)), '\''),
-    )),
+    string: $ => choice(
+      seq(
+        '"',
+        repeat(choice(
+          alias(/([^"\\]|\$[^\(])+/, $.string_content),
+          /\\(.|\n)/,
+          $.macro_variable,
+        )),
+        '"',
+      ),
+      seq(
+        '\'',
+        repeat(choice(
+          alias(/([^'\\]|\$[^\(])+/, $.string_content),
+          /\\(.|\n)/,
+          $.macro_variable,
+        )),
+        '\'',
+      ),
+    ),
 
-    symbol: _ => /-?[a-zA-Z0-9_]+/,
+    symbol: _ => /-?[a-zA-Z0-9_-]+/,
+
+    text: _ => /[^\s].*/,
+
+    name: $ => prec.right(prec.dynamic(-1, repeat1(choice(
+      $.symbol,
+      $.macro_variable,
+      $.string,
+    )))),
 
     comment: _ => token(seq('#', /.*/)),
   },
