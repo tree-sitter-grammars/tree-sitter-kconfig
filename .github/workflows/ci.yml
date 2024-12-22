@@ -44,12 +44,13 @@ jobs:
           test-swift: true
       - name: Set up examples
         run: |-
-          git clone https://github.com/torvalds/linux examples/linux --single-branch --depth=1 --filter=blob:none
+          git clone https://github.com/torvalds/linux            examples/linux  --single-branch --depth=1 --filter=blob:none
+          git clone https://github.com/zephyrproject-rtos/zephyr examples/zephyr --single-branch --depth=1 --filter=blob:none
       - name: Parse examples
         uses: tree-sitter/parse-action@v4
         with:
           files: |
-            examples/**/Kconfig*
+            examples/**/[K]config*
             !examples/linux/scripts/Kconfig.include
             !examples/linux/scripts/kconfig/tests/preprocess/builtin_func/Kconfig
             !examples/linux/scripts/kconfig/tests/preprocess/circular_expansion/Kconfig
