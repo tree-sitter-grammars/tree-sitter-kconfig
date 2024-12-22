@@ -12,11 +12,15 @@
         "named": true
       },
       {
+        "type": "name",
+        "named": true
+      },
+      {
         "type": "parenthesized_expression",
         "named": true
       },
       {
-        "type": "prompt",
+        "type": "string",
         "named": true
       },
       {
@@ -102,7 +106,7 @@
         "required": false,
         "types": [
           {
-            "type": "symbol",
+            "type": "name",
             "named": true
           }
         ]
@@ -122,6 +126,10 @@
         },
         {
           "type": "config",
+          "named": true
+        },
+        {
+          "type": "configdefault",
           "named": true
         },
         {
@@ -146,6 +154,10 @@
         },
         {
           "type": "limiting_menu_display",
+          "named": true
+        },
+        {
+          "type": "mainmenu",
           "named": true
         },
         {
@@ -204,7 +216,7 @@
         "required": true,
         "types": [
           {
-            "type": "prompt",
+            "type": "string",
             "named": true
           }
         ]
@@ -289,7 +301,7 @@
         "required": true,
         "types": [
           {
-            "type": "symbol",
+            "type": "name",
             "named": true
           }
         ]
@@ -351,6 +363,32 @@
     }
   },
   {
+    "type": "configdefault",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "default_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "configuration",
     "named": true,
     "root": true,
@@ -369,6 +407,10 @@
         },
         {
           "type": "config",
+          "named": true
+        },
+        {
+          "type": "configdefault",
           "named": true
         },
         {
@@ -479,7 +521,15 @@
           "named": true
         },
         {
+          "type": "configdefault",
+          "named": true
+        },
+        {
           "type": "if",
+          "named": true
+        },
+        {
+          "type": "mainmenu",
           "named": true
         },
         {
@@ -514,7 +564,7 @@
           "named": true
         },
         {
-          "type": "prompt",
+          "type": "string",
           "named": true
         }
       ]
@@ -567,7 +617,7 @@
         "required": true,
         "types": [
           {
-            "type": "prompt",
+            "type": "string",
             "named": true
           }
         ]
@@ -583,7 +633,7 @@
         "required": true,
         "types": [
           {
-            "type": "prompt",
+            "type": "string",
             "named": true
           }
         ]
@@ -603,6 +653,10 @@
         },
         {
           "type": "config",
+          "named": true
+        },
+        {
+          "type": "configdefault",
           "named": true
         },
         {
@@ -627,6 +681,10 @@
         },
         {
           "type": "limiting_menu_display",
+          "named": true
+        },
+        {
+          "type": "mainmenu",
           "named": true
         },
         {
@@ -685,7 +743,7 @@
         "required": true,
         "types": [
           {
-            "type": "symbol",
+            "type": "name",
             "named": true
           }
         ]
@@ -747,6 +805,29 @@
     }
   },
   {
+    "type": "name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "macro_variable",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "numerical_ranges",
     "named": true,
     "fields": {},
@@ -797,7 +878,7 @@
           "named": true
         },
         {
-          "type": "symbol",
+          "type": "name",
           "named": true
         }
       ]
@@ -812,7 +893,45 @@
       "required": true,
       "types": [
         {
-          "type": "prompt",
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_variable",
+          "named": true
+        },
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "text",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "macro_variable",
+          "named": true
+        },
+        {
+          "type": "string_content",
           "named": true
         }
       ]
@@ -835,7 +954,7 @@
           "named": true
         },
         {
-          "type": "prompt",
+          "type": "string",
           "named": true
         }
       ]
@@ -899,6 +1018,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -929,11 +1058,19 @@
     "named": false
   },
   {
+    "type": "\"",
+    "named": false
+  },
+  {
     "type": "$(",
     "named": false
   },
   {
     "type": "&&",
+    "named": false
+  },
+  {
+    "type": "'",
     "named": false
   },
   {
@@ -990,18 +1127,34 @@
   },
   {
     "type": "comment",
-    "named": false
+    "named": true
   },
   {
     "type": "comment",
-    "named": true
+    "named": false
   },
   {
     "type": "config",
     "named": false
   },
   {
+    "type": "configdefault",
+    "named": false
+  },
+  {
     "type": "def_bool",
+    "named": false
+  },
+  {
+    "type": "def_hex",
+    "named": false
+  },
+  {
+    "type": "def_int",
+    "named": false
+  },
+  {
+    "type": "def_string",
     "named": false
   },
   {
@@ -1073,15 +1226,23 @@
     "named": true
   },
   {
-    "type": "prompt",
+    "type": "orsource",
+    "named": false
+  },
+  {
+    "type": "osource",
     "named": false
   },
   {
     "type": "prompt",
-    "named": true
+    "named": false
   },
   {
     "type": "range",
+    "named": false
+  },
+  {
+    "type": "rsource",
     "named": false
   },
   {
@@ -1097,11 +1258,11 @@
     "named": false
   },
   {
-    "type": "symbol",
+    "type": "string_content",
     "named": true
   },
   {
-    "type": "text",
+    "type": "symbol",
     "named": true
   },
   {
