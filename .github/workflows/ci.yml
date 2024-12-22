@@ -43,14 +43,17 @@ jobs:
           test-go: true
           test-swift: true
       - name: Set up examples
+        if: matrix.os != 'windows-latest'
         run: |-
           git clone https://github.com/torvalds/linux            examples/linux  --single-branch --depth=1 --filter=blob:none
           git clone https://github.com/zephyrproject-rtos/zephyr examples/zephyr --single-branch --depth=1 --filter=blob:none
+        # TODO: Fix parsing on windows, case-insensitive fs leads to folders named `kconfig` being parsed
       - name: Parse examples
         uses: tree-sitter/parse-action@v4
+        if: matrix.os != 'windows-latest'
         with:
           files: |
-            examples/**/[K]config*
+            examples/**/Kconfig*
             !examples/linux/scripts/Kconfig.include
             !examples/linux/scripts/kconfig/tests/preprocess/builtin_func/Kconfig
             !examples/linux/scripts/kconfig/tests/preprocess/circular_expansion/Kconfig
